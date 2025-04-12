@@ -1,0 +1,20 @@
+import bs58 from 'bs58';
+import { getKeypairFromFile } from '@solana-developers/helpers';
+import { clusterApiUrl, Connection, Transaction } from '@solana/web3.js';
+
+const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+
+const signedTx =
+  '7g7ooWjYZpUg3gxkiQmKpeTRPtpJBGokpjVjomamQYtC6ubyLofeUgJenBPj8PPhRYTLxaw9KRKmVB3PzDuwX1nW5za7duV5feAYnR9UuyGuqkB5D1ApbSj7PCqa1TiejNjrX2HkkfE3MBr8ZVSkvtsvuqFRUGW9K359oMWrg4HZvHw22HxBvnu9hu8pXFQry9wshAYvwmRZ5fa9TCF7zwqj7HoBPMUNJpNB7KhakktxRGiKq3E3XCSG5wxbWUFdpN4AVb5MpkopKxUsq6ptRt5vQ4PSRJVLPW3Sie7PKfZBHXkPTTTCBjaR5BVqPV2YXTKSYeWfSh78xqCChreThWrBctcK9avZ8WqoKZ5pdMMTusSphj5QmrtH4gr9TBjoUC2WpFqtSZG57X4Lj3jA2uHq3VzjpMYV8W41v6oGGt2nNpbdHNqCfXbJDSvJbcFEE9UkXgSLTHMJwbgB9pTdgk3fmPeVfkeyG2xoQ1sJhQ21CyVZX4Q76EFNb1svQj9dh6xVqC5sV3BkR5zjuvSwv31WV2qtcBCFXn45gGXnFtuesRHzLtS9D1Ckhthrfg95U8b5TPL9NKRoUL3cR7cZjk4VTeCk4xf8Hq4WXwR7gfks4ySStonho2KxxyTmTWA4XTrXpjhqpyMoRUg8WQpJsg8obsTUWmrdmLdjcr1s4PfT7b9chAdZvNBjRfzpfGfE1rGbB3y2yf53Ey7btX8z9MR7fqsgUbZDjS4eaYBWmxnrfwHxZLbKpncG4UoEN3qNHjbzvWDB93XUC7hK6anTs1jcDZFJoRaassQxtExDyApGgyFAi8KFagnLBkdjuC1yMB5MwRTFpDbTbtEeegKnUUxMRorMeYoqPemkvLquQ2QKLAzJFQJGVRJndQ5WyDYnv5gicHw4DF84witmdq6dwzd5';
+
+const thirdWallet = await getKeypairFromFile(
+  './3b6DZ9yaEvDH4AZ2zwJSu8oUjLJgbtWibnKe553MucTK.json'
+);
+
+const tx = Transaction.from(bs58.decode(signedTx));
+
+tx.partialSign(thirdWallet);
+
+const txHash = await connection.sendRawTransaction(tx.serialize());
+
+console.log('Transaction sent: ', txHash);
