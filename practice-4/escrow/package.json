@@ -1,0 +1,22 @@
+{
+  "license": "ISC",
+  "scripts": {
+    "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
+    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "@jest/globals": "^29.7.0",
+    "@solana-developers/helpers": "^2.8.1",
+    "@solana/spl-token": "^0.4.13",
+    "@solana/web3.js": "^1.98.2"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.0",
+    "@types/jest": "latest",
+    "jest": "^29.0.3",
+    "prettier": "^2.6.2",
+    "ts-jest": "^29.0.2",
+    "typescript": "^5.7.3"
+  }
+}
