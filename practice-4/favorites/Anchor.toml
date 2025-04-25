@@ -1,0 +1,19 @@
+[toolchain]
+package_manager = "pnpm"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+favorites = "CSWm1651uJy1NavUNjA5PdVB98fY3pKkCYkJBcugzrKa"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "pnpm exec jest --preset ts-jest"
